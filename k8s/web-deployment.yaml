@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: web
+  name: web
+spec:
+  template:
+    metadata:
+      labels:
+        io.kompose.service: web
+    spec:
+      containers:
+      - image: nginx:alpine
+        name: web
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html/
+          name: web-html
+          readOnly: true
+      restartPolicy: Always
+      volumes:
+      - name: web-html
+        hostPath:
+          path: html
