@@ -3,7 +3,6 @@ kind: Service
 metadata:
   labels:
     io.kompose.service: web
-  labels:
     trilogy.v3.mapped-ip: "10.69.128.65"
     trilogy.v3.mapped-ports-tcp: "5080.6080"
     trilogy.v3.smart-nat-l3: "service"
