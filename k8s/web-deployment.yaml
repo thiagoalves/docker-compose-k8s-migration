@@ -10,18 +10,23 @@ spec:
       labels:
         io.kompose.service: web
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - k8s-node-1
+                - k8s-node-2
+#                - k8s-node-3
+#                - k8s-st-node-1
       containers:
-      - image: nginx:alpine
+      - image: python:3
         name: web
+        command: ['sh', '-c', 'python3 -m http.server 5080 & python3 -m http.server 6080']
         ports:
-        - containerPort: 80
-        resources: {}
-        volumeMounts:
-        - mountPath: /usr/share/nginx/html/
-          name: web-html
-          readOnly: true
+        - containerPort: 5080
+        - containerPort: 6080
       restartPolicy: Always
-      volumes:
-      - name: web-html
-        hostPath:
-          path: html

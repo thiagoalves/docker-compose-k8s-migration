@@ -3,11 +3,16 @@ kind: Service
 metadata:
   labels:
     io.kompose.service: web
+  labels:
+    trilogy.v3.mapped-ip: "10.69.128.65"
+    trilogy.v3.mapped-ports-tcp: "5080.6080"
+    trilogy.v3.smart-nat-l3: "service"
   name: web
 spec:
   ports:
-  - name: "8080"
-    port: 8080
-    targetPort: 80
+  - name: "5080"
+    port: 5080
+  - name: "6080"
+    port: 6080
   selector:
     io.kompose.service: web

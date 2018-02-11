@@ -1,6 +1,6 @@
 web:
-  image: nginx:alpine
-  volumes:
-   - html/:/usr/share/nginx/html/:ro
+  image: python:3
+  command: sh -c 'python3 -m http.server 5080 & python3 -m http.server 6080'
   ports:
-   - "8080:80"
+   - 5080:5080
+   - 6080:6080
