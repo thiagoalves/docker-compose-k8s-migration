@@ -4,6 +4,13 @@
   - set_fact:
       rolename: a
   - debug: var=rolename
-  - include_role:
+
+  - name: Using include_role with dynamic name
+    include_role:
       name: "{{ rolename }}"
       tasks_from: k8s
+    ignore_errors: yes
+
+  - name: Now trying to add a role task that processes a template
+    include_tasks: "roles/{{ rolename }}/tasks/k8s.yml"
+    ignore_errors: yes
