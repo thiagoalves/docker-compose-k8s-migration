@@ -1,0 +1,2 @@
+- debug: msg='Msg from role/a/k8s.yml'
+- template: src=mytemplate.yml.j2 dest=/tmp

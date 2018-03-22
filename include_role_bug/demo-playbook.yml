@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  tasks:
+  - set_fact:
+      rolename: a
+  - debug: var=rolename
+  - include_role:
+      name: "{{ rolename }}"
+      tasks_from: k8s
